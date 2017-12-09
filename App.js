@@ -6,7 +6,7 @@ import TileSet from './components/tile-set';
 
 export default props => {
     const tiles = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-        .map(label => ({label, body: ~~(Math.random() * 12) + 1}));
+        .map(label => ({label, body: ~~(Math.random() * 12)}));
     
     return (
         <Store>
