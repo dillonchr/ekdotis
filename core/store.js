@@ -9,6 +9,6 @@ const reducer = (state, action) => {
     }
 };
 
-const store = createStore(reducer);
+export const store = createStore(reducer);
 
 export default ({children}) => <Provider store={store}>{children}</Provider>;
