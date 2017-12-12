@@ -18,18 +18,20 @@ export default (props) => {
 const styles = {
     header: {
         alignItems: 'center',
+        borderBottomColor: '#B93C6C',
+        borderBottomWidth: 2,
         display: 'flex',
         flexDirection: 'row',
         padding: 10,
-        backgroundColor: '#5B3C88'
+        //backgroundColor: '#B93C6C'//'#5B3C88'
     },
     headerText: {
-        color: 'white',
+        color: '#B93C6C',
         flex: 1,
         fontSize: 20,
         textAlign: 'center'
     },
     headerButton: {
-        color: 'white'
+        color: '#B93C6C'
     }
 };
