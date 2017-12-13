@@ -3,15 +3,27 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Tile from './tile';
 
-const TileSet = ({tiles, dispatch}) => {
+const TileSet = ({tiles, isYear, dispatch}) => {
     const min = tiles.reduce((lo, {body}) => body < lo ? body : lo, Infinity);
     const max = tiles.reduce((hi, {body}) => body > hi ? body : hi, min);
     const steps = (max - min) / 3;
     const onTileTap = label => {
-        dispatch({
-            type: 'view-month',
-            value: label
-        });
+        if (isYear) {
+            dispatch({
+                type: 'set-tiles',
+                value: [1,6,14]
+                    .map(n => ({
+                        label: n,
+                        body: ~~((Math.random() * 4) + 1)
+                    }))
+            });
+        } else {
+            dispatch({
+                type: 'set-tiles',
+                value:  ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+                .map((label, i) => ({label, body: ~~(Math.random() * 12)}))
+            });
+        }
     };
 
     const children = tiles
@@ -28,7 +40,8 @@ const TileSet = ({tiles, dispatch}) => {
 };
 
 const mapStateToProps = state => ({
-    tiles: state.tiles
+    tiles: state.tiles,
+    isYear: state.tiles.length === 12
 });
 
 export default connect(mapStateToProps)(TileSet);
