@@ -3,7 +3,9 @@ import { TouchableOpacity, View, Text, Dimensions } from 'react-native';
 
 export default ({label, body, rank}) => {
     const { width } = Dimensions.get('window');
-    const tileSize = (width - 50) / 4;
+    const maxWidth = 135;
+    const quarterWidth = (width - 50) / 4;
+    const tileSize = quarterWidth < maxWidth ? quarterWidth : maxWidth;
     const backgroundColor = body === 0 ? 'gray' : rank < 2 ? '#8E6FBB' : rank < 3 ? '#7556A2' : '#5B3C88';
     return (
         <TouchableOpacity style={{...styles.tile, backgroundColor, height: tileSize, width: tileSize}} onPress={() => console.log('tile click')}>
