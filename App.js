@@ -1,18 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import Store from './core/store';
-import Header from './components/header';
-import TileSet from './components/tile-set';
+import ScreenContainer from './components/screen-container';
 
 export default props => {    
     return (
         <Store>
-            <View style={styles.screen}>
-                <Header backButtonText={'Back'} title={'2017'} />
-                <View style={styles.container}>
-                    <TileSet />
-                </View>
-            </View>
+            <ScreenContainer />
         </Store>
     );
 };
@@ -20,8 +14,7 @@ export default props => {
 const styles = {
     screen: {
         flex: 1,
-        flexDirection: 'column',
-        paddingTop: 20
+        flexDirection: 'column'
     },
     container: {
         flex: 1

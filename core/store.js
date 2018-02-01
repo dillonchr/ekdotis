@@ -2,18 +2,17 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-const reducer = (state = {}, action) => {
+const initialState = {
+    currentYear: new Date().getFullYear(),
+    currentMonth: null
+};
+
+const reducer = (state = initialState, action) => {
     switch(action.type) {
         case 'set-tiles':
-            return {
-                ...state,
-                tiles: action.value
-            };
+            return {...state, tiles: action.value};
         case 'view-month':
-            return {
-                ...state,
-                currentMonth: action.value
-            };
+            return {...state, currentMonth: action.value};
         default:
             return state;
     }

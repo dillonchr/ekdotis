@@ -7,16 +7,18 @@ export default ({label, body, rank, onTap}) => {
     const quarterWidth = (width - 50) / 4;
     const tileSize = quarterWidth < maxWidth ? quarterWidth : maxWidth;
     const backgroundColor = body === 0 ? 'gray' : rank < 2 ? '#8E6FBB' : rank < 3 ? '#7556A2' : '#5B3C88';
+
     const onTileTap = () => {
         onTap(label);
     };
+    
     return (
         <TouchableOpacity style={{...styles.tile, backgroundColor, height: tileSize, width: tileSize}} onPress={onTileTap}>
             <View style={styles.label}>
                 <Text style={styles.labelText}>{label}</Text>
             </View>
             <View style={styles.body}>
-                <Text style={styles.bodyText}>{!!body && body}</Text>
+                <Text style={styles.bodyText}>{body}</Text>
             </View>
         </TouchableOpacity>
     );
@@ -30,9 +32,9 @@ const styles = {
     },
     labelText: {
         color: 'white',
-        fontSize: 12,
-        paddingLeft: 5,
-        paddingTop: 5
+        fontSize: 16,
+        paddingLeft: 8,
+        paddingTop: 4
     },
     body: {
         alignItems: 'center',
