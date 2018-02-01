@@ -1,32 +1,35 @@
 import React from 'react';
+import { AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-
-const mockData = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    .reduce((report, label, i) => ({...report, [i + 1]: {
-        3: {hours: ~~(Math.random() * 12)},
-        10: {hours: ~~(Math.random() * 12)},
-        17: {hours: ~~(Math.random() * 12)},
-        24: {hours: ~~(Math.random() * 12)}
-    }}), {});
 
 const initialState = {
     currentYear: new Date().getFullYear(),
     currentMonth: null,
-    report: {
-        2018: mockData
-    }
+    report: {},
     screenTitle: 'Ekdotis'
 };
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case 'load-data':
+            return {...state, report: action.value};
         case 'set-screen-title':
             return {...state, screenTitle: action.value};
         default:
             return state;
     }
 };
+
+AsyncStorage.getItem('service-report')
+    .then(r => r ? JSON.parse(r) : {})
+    .then(report => {
+        console.log('REPORT',   report);
+        store.dispatch({
+            type: 'load-data',
+            value: report
+        });
+    });
 
 export const store = createStore(reducer);
 

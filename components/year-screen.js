@@ -21,7 +21,7 @@ const YearScreen = props => {
         props.history.push(`/year/${getYear()}/${mo}`);
     };
 
-    const tiles = Object.entries(props.report[getYear()])
+    const tiles = Object.entries(props.report[getYear()] || {})
         .map(([month, report]) => {
             return {
                 label: monthNames[month - 1],
