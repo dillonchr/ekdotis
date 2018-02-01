@@ -1,13 +1,24 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { NativeRouter, Route, AndroidBackButton } from 'react-router-native';
 import Store from './core/store';
-import ScreenContainer from './components/screen-container';
+import Header from './components/header';
+import YearScreen from './components/year-screen';
+import MonthScreen from './components/month-screen';
 
 export default props => {    
     return (
-        <Store>
-            <ScreenContainer />
-        </Store>
+        <NativeRouter>
+            <Store>
+                <View>
+                    <Header />
+                    <AndroidBackButton />
+                    <Route exact path="/" component={YearScreen} />
+                    <Route exact path="/year/:year" component={YearScreen} />
+                    <Route path="/year/:year/:month" component={MonthScreen} />
+                </View>
+            </Store>
+        </NativeRouter>
     );
 };
 

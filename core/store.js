@@ -2,9 +2,20 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
+const mockData = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    .reduce((report, label, i) => ({...report, [i + 1]: {
+        3: {hours: ~~(Math.random() * 12)},
+        10: {hours: ~~(Math.random() * 12)},
+        17: {hours: ~~(Math.random() * 12)},
+        24: {hours: ~~(Math.random() * 12)}
+    }}), {});
+
 const initialState = {
     currentYear: new Date().getFullYear(),
-    currentMonth: null
+    currentMonth: null,
+    report: {
+        2018: mockData
+    }
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,7 +30,5 @@ const reducer = (state = initialState, action) => {
 };
 
 export const store = createStore(reducer);
-store.dispatch({type: 'set-tiles', value: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-.map((label, i) => ({label, body: ~~(Math.random() * 12)}))});
 
 export default ({children}) => <Provider store={store}>{children}</Provider>;
