@@ -16,14 +16,13 @@ const initialState = {
     report: {
         2018: mockData
     }
+    screenTitle: 'Ekdotis'
 };
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'set-tiles':
-            return {...state, tiles: action.value};
-        case 'view-month':
-            return {...state, currentMonth: action.value};
+        case 'set-screen-title':
+            return {...state, screenTitle: action.value};
         default:
             return state;
     }
