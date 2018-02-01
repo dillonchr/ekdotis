@@ -1,23 +1,12 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { withRouter } from 'react-router-native';
+import { connect } from 'react-redux';
 
-export default withRouter((props) => {
-    const getTitle = () => {
-        const defaultTitle = 'Ekdotis';
-        try {
-            return props.match.params.month || props.match.params.year || defaultTitle;
-        } catch (ignore) {
-            return defaultTitle;
-        }
-    };
-
-    return (
-        <View style={styles.header}>
-            <Text style={styles.headerText}>{getTitle()}</Text>
-        </View>
-    );
-});
+const Header = ({ title }) => (
+    <View style={styles.header}>
+        <Text style={styles.headerText}>{title}</Text>
+    </View>
+);
 
 const styles = {
     header: {
@@ -33,8 +22,7 @@ const styles = {
         flex: 1,
         fontSize: 20,
         textAlign: 'center'
-    },
-    headerButton: {
-        color: '#fff'
     }
 };
+
+export default connect(s => ({title: s.screenTitle}))(Header);

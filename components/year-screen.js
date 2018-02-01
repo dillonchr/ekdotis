@@ -3,8 +3,7 @@ import { Text, View } from 'react-native';
 import { withRouter } from 'react-router-native';
 import { connect } from 'react-redux';
 import TileSet from './tile-set';
-
-const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+import monthNames from './month-names';
 
 const YearScreen = props => {
     const getYear = () => {
@@ -16,6 +15,8 @@ const YearScreen = props => {
         }
     };
 
+    props.dispatch({type: 'set-screen-title', value: getYear()});
+
     const viewMonth = mo => {
         props.history.push(`/year/${getYear()}/${mo}`);
     };
@@ -24,7 +25,7 @@ const YearScreen = props => {
         .map(([month, report]) => {
             return {
                 label: monthNames[month - 1],
-                body: Object.values(report).reduce((sum, r) => sum + r.hours, 0)
+                body: Math.floor(Object.values(report).reduce((sum, r) => sum + r.minutes, 0) / 60)
             };
         });
 
