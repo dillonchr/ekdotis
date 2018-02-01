@@ -14,13 +14,7 @@ export default withRouter((props) => {
 
     return (
         <View style={styles.header}>
-            <TouchableOpacity onPress={() => console.log('implement back button')}>
-                <Text style={styles.headerButton}>{props.backButtonText}</Text>
-            </TouchableOpacity>
             <Text style={styles.headerText}>{getTitle()}</Text>
-            <TouchableOpacity onPress={() => console.log('implement menu button')}>
-                <Text style={styles.headerButton}>{'Menu'}</Text>
-            </TouchableOpacity>
         </View>
     );
 });

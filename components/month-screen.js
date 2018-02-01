@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import TileSet from './tile-set';
 
 const MonthScreen = props => {
-    console.log(props);
     const { year, month } = props.match.params;
 
     const tiles = Object.entries(props.report[year][month])
